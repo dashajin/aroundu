@@ -10,7 +10,7 @@
                             @foreach($articleimages as $image)
                                 <el-carousel-item key="{{ $image['image'] }}">
                                     <a href="{{ $image['link'] }}">
-                                        <img src='{{ $image['image'] }}' style="height: inherit;">
+                                        <img src='{{ $image['image'] }}' style="height: 300px; width: 400px">
                                     </a>
                                 </el-carousel-item>
                             @endforeach
@@ -18,7 +18,7 @@
                     </div>
                 </el-row>
                 <el-row :gutter='10'>
-                    <el-col :sm="16">
+                    <el-col :sm="16" id="article-content">
                         <el-row>
                             <div class="recommend-collection">
                                 @foreach($topics as $topic)
@@ -59,7 +59,6 @@
 @endsection
 
 @section('js')
-
 @endsection
 
 @section('css')

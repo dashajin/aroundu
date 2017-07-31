@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
+use App\Notifications\GotFollower;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Image;
 
 class UserController extends Controller
 {
+    use Notifiable;
+
     public function setting()
     {
         return view('user.setting')->withUser(\Auth::user());
@@ -63,6 +67,8 @@ class UserController extends Controller
     {
         $user = \Auth::user();
         $user->followThisUser($id);
+        $following = User::find($id);
+        $following->notify(new GotFollower($user));
         return back();
     }
 

@@ -184,6 +184,8 @@ return [
         Dingo\Api\Provider\LaravelServiceProvider::class,
 
         itbdw\QiniuStorage\QiniuFilesystemServiceProvider::class,
+
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*

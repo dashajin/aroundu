@@ -21,6 +21,7 @@ Vue.use(ElementUI)
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('carousel', require('./components/Carousel.vue'));
 Vue.component('articleitem', require('./components/Articleitem.vue'));
+Vue.component('noticebar', require('./components/Noticebar.vue'));
 Vue.component(
     'passport-clients',
     require('./components/passport/Clients.vue')

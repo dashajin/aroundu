@@ -61,20 +61,20 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <div class="row">
-                                        <div class="col-md-10">
+                                        <div class="col-md-11">
                                             <a href="{{ url('/user', ['id' => $comment->user->id]) }}">{{ $comment->user->name }}</a> at {{ $comment->created_at->toDateTimeString() }}
                                         </div>
                                         <div class="col-md-1">
                                             <a href="#comment-content" name="{{ $comment->user->name }}" id="{{ $comment->user->id }}" onclick="clickReply(this)"><i class="fa fa-mail-reply"></i></a>
                                         </div>
-                                        <div class="col-md-1">
-                                            @if(!$comment->vote(\Auth::id())->exists())
-                                                <a href="{{ url('/comment/'.$comment->id.'/vote') }}"><i class="fa fa-thumbs-o-up"></i></a>
-                                            @else
-                                                <a href="{{ url('/comment/'.$comment->id.'/unvote') }}"><i class="fa fa-thumbs-up"></i></a>
-                                            @endif
-                                            {{ $comment->votes->count() }}
-                                        </div>
+                                        {{--<div class="col-md-1">--}}
+                                            {{--@if(!$comment->vote(\Auth::id())->exists())--}}
+                                                {{--<a href="{{ url('/comment/'.$comment->id.'/vote') }}"><i class="fa fa-thumbs-o-up"></i></a>--}}
+                                            {{--@else--}}
+                                                {{--<a href="{{ url('/comment/'.$comment->id.'/unvote') }}"><i class="fa fa-thumbs-up"></i></a>--}}
+                                            {{--@endif--}}
+                                            {{--{{ $comment->votes->count() }}--}}
+                                        {{--</div>--}}
                                     </div>
                                 </div>
                                 <div class="panel-body">

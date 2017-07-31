@@ -45,4 +45,11 @@ Route::Post('/topic', 'TopicController@store');
 Route::get('/topic/{topic}', 'TopicController@show');
 Route::get('/topic/{topic}/submit', 'TopicController@submit');
 
+Route::get('/notice', 'NoticeController@index');
+Route::get('/notice/follow', 'NoticeController@follow');
+Route::get('/notice/like', 'NoticeController@like');
+Route::get('/notice/comment', 'NoticeController@comment');
+
+
+
 include_once('admin.php');

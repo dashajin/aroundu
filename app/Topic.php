@@ -31,7 +31,8 @@ class Topic extends Model
 
     public static function getTopicsByArticlesNum($num)
     {
-        return self::all()->sortByDesc(function ($topic) {
+        $topics = Topic::all();
+        return $topics->sortByDesc(function ($topic) {
             return $topic->articles->count();
         })->take($num);
     }

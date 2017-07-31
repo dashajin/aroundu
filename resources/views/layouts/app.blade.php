@@ -59,6 +59,14 @@
                             <li><a href="{{ url('register') }}">Register</a></li>
                         @else
                             <li>
+                                <a href="{{ url('/notice') }}">
+                                    <i class="fa fa-file-notice-o"></i> 通知
+                                    @if (\Auth::user()->unreadNotifications->count()>0)
+                                        <span class="badge pull-right" style="background-color: red">{{ \Auth::user()->unreadNotifications->count() }}</span>
+                                    @endif
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ url('/article/create') }}">
                                     <i class="fa fa-file-text-o"></i> 写文章
                                 </a>

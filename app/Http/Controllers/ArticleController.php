@@ -4,22 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Comment;
+use App\Notifications\GotVote;
+use App\Notifications\ReceivedComment;
 use App\Topic;
 use App\Vote;
 use App\Http\Requests\CommentRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Image;
 
 class ArticleController extends Controller
 {
+    use Notifiable;
     /**
      * show all articles
      */
     public function index()
     {
         $articles = Article::paginate(10);
+        $articles->load('user');
+//        $articles = Article::apiArticleList(request('offset'), request('number'));
 //        dd($articles);
 //        $articles = Article::getArticlesByComments();
         $articlesByVotes = Article::getArticlesByVotes();
@@ -103,6 +109,7 @@ class ArticleController extends Controller
         $comment->upper_id = $request['upper_id'];
         $comment->content = $request['content'];
         $article->comments()->save($comment);
+        $article->user->notify(new ReceivedComment($comment));
         return back();
     }
 
@@ -119,6 +126,7 @@ class ArticleController extends Controller
             ];
         } else {
             $article->votes()->save($vote);
+            $article->user->notify(new GotVote($vote));
             $param = [
                 'error' => 0,
                 'msg' => 'vote success!',

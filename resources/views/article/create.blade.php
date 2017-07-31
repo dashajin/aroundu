@@ -103,7 +103,7 @@
                     },
                     data: data,
                     type: "POST",
-                    url: "/article/summerImageUpload",
+                    url: "/uploadImage",
                     cache: false,
                     contentType: false,
                     processData: false,

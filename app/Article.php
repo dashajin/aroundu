@@ -54,7 +54,7 @@ class Article extends Model
 
 
 
-    public function apiArticleList($offset = 0, $number = 10)
+    public static function apiArticleList($offset = 0, $number = 10)
     {
         if (is_null($offset)) {
             $offset = 0;
@@ -79,6 +79,7 @@ class Article extends Model
     public static function getArticlesByVotes()
     {
         $articles = Article::all();
+        $articles->load('votes');
         $sorted = $articles->sortByDesc(function ($articles) {
             return $articles->votes->count();
         })->take(5);

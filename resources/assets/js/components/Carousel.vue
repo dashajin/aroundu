@@ -2,7 +2,7 @@
 <div id="carousel">
   <el-carousel :interval="3000" type="card" height="300px">
     <el-carousel-item v-for="url in urls" :key="url">
-      <img :src='url' style="height: inherit;">
+      <img :src='url' style="height: inherit;width: 400px">
     </el-carousel-item>
   </el-carousel>
 </div>
