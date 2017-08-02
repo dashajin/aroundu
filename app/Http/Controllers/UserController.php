@@ -54,7 +54,14 @@ class UserController extends Controller
 
     public function settingStore()
     {
-
+        $this->validate(request(), [
+            'name' => 'required|max:20',
+        ]);
+        $user = \Auth::user();
+        $user->name = request('name');
+//        dd($user->name);
+        $user->save();
+        return back();
     }
 
     public function show($id)

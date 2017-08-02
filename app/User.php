@@ -130,4 +130,13 @@ class User extends Authenticatable
         }
         return $array;
     }
+
+    public static function getTopUserByArticles($num)
+    {
+        $users = self::all();
+        $topUsers = $users->sortByDesc(function($user) {
+            return $user->articles->count();
+        })->whereNotIn('id', \Auth::id())->take($num);
+        return $topUsers;
+    }
 }

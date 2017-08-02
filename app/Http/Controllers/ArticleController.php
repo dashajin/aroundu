@@ -23,12 +23,12 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::paginate(10);
+        $articles = Article::orderBy('created_at', 'desc')->paginate(10);
         $articles->load('user');
 //        $articles = Article::apiArticleList(request('offset'), request('number'));
 //        dd($articles);
 //        $articles = Article::getArticlesByComments();
-        $articlesByVotes = Article::getArticlesByVotes();
+        $articlesByVotes = Article::getArticlesByVotes(5);
         $articleimages = array();
         $count = 0;
         foreach ($articlesByVotes as $articlesByVote) {
@@ -38,7 +38,7 @@ class ArticleController extends Controller
                 $count++;
             }
         }
-        $topics = Topic::getTopicsByArticlesNum(10);
+        $topics = Topic::getTopicsByArticlesNum(5);
         return view('welcome', compact('articles', 'articleimages', 'topics'));
     }
 

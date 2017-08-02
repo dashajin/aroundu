@@ -17,7 +17,7 @@
                         </el-carousel>
                     </div>
                 </el-row>
-                <el-row :gutter='10'>
+                <el-row :gutter='40'>
                     <el-col :sm="16" id="article-content">
                         <el-row>
                             <div class="recommend-collection">
@@ -50,7 +50,13 @@
                         {{ $articles->links() }}
                     </el-col>
                     <el-col :sm="8">
-                        <div class="grid-content bg-purple-light"></div>
+                        {{--<div class="grid-content bg-purple-light"></div>--}}
+                        推荐作者
+                        <hr>
+                        @include('layouts.topuser')
+                        推荐文章
+                        <hr>
+                        @include('layouts.toparticle')
                     </el-col>
                 </el-row>
             </el-col>

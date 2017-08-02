@@ -66,23 +66,23 @@ class Article extends Model
         return $articles;
     }
 
-    public static function getArticlesByComments()
+    public static function getArticlesByComments($num)
     {
         $articles = Article::all();
         $sorted = $articles->sortByDesc(function ($articles) {
             return $articles->comments->count();
-        });
+        })->take($num);
         //dd($sorted);
         return $sorted;
     }
 
-    public static function getArticlesByVotes()
+    public static function getArticlesByVotes($num)
     {
-        $articles = Article::all();
+        $articles = Article::all()->whereNotIn('image', null);
         $articles->load('votes');
         $sorted = $articles->sortByDesc(function ($articles) {
             return $articles->votes->count();
-        })->take(5);
+        })->take($num);
         //dd($sorted);
         return $sorted;
     }

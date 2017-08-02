@@ -3,8 +3,21 @@
 @section('content')
     <div class="container app-content">
         <div class="row">
-            <div class="col-md-8 text-center">
-
+            <div class="col-md-8">
+                <form role="form" method="post" action="{{ url('/user/me/setting') }}">
+                    {{ csrf_field() }}
+                    {{ method_field('PUT') }}
+                    <div class="form-group">
+                        <label for="name">name:</label>
+                        <input type="text" class="form-control" id="title" name="name" value="{{ \Auth::user()->name }}">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-5">
+                            <button class="btn btn-primary">submit</button>
+                            <a href="{{ url()->previous() }}" class="btn btn-danger">返回</a>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="col-md-4 text-center">
                 <p style="margin-top: 50px">

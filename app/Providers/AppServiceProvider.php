@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Article;
+use App\User;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +16,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer('welcome', function ($view) {
+            $topUsers = User::getTopUserByArticles(5);
+            $topArticles = Article::getArticlesByComments(5);
+            $view->with('top_users', $topUsers);
+            $view->with('top_articles', $topArticles);
+        });
     }
 
     /**
